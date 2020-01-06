@@ -1,0 +1,4 @@
+
+export V="T";i=0; for num in $(awk '{print $1}' results.log | grep $V | awk -F $V '{print $1}'); do i=$(bc <<< "$i+$num"); done; echo $i"$V"
+96.9T
+export V="G";i=0; for num in $(awk '{print $1}' results.log | grep $V | awk -F $V '{print $1}'); do i=$(bc <<< "$i+$num"); done; echo $i"$V"

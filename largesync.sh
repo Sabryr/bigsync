@@ -12,27 +12,7 @@ i=0;
 
 for dir in $(ls $LOCATION)
 do 
-	if grep -q $LOCATION$dir "$PROGRESS"
-	then 
-		echo "found" >/dev/null 
-	else 
-		let i=i+1
-		Cdir=$LOCATION$dir
-		Tdir=$TARTARGET$dir.tar
-		echo $Cdir >> "$PROGRESS"
-
-		tar cf $Tdir $Cdir --hard-dereference &> /dev/null
-		checksum=$(sha1sum $Cdir | awk '{print substr($0,0,6)}')
-		mv $Tdir $Tdir-$checksum
-		echo "$i of $DIR_NUM started " $(du -hs $Tdir-$checksum)
-		scp $Tdir-$checksum $SCP_TARGET
-		if [ $? -eq "0" ] ;
-                then
-			rm $Tdir-$checksum
-		fi
-		sleep 1
-		echo "$i of $DIR_NUM done"
-	fi	
+	./rsyncwrap.sh $LOCATION$dir $TARTARGET$dir.tar
 done
 
 #if [[ -f "$results"]]

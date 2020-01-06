@@ -17,6 +17,6 @@ module load openmpi.intel/3.1.2
 progress="progress.log"
 echo $(date) >> "$progress"
 
-mpirun -n 8 analyser.sh "$location"  "$progress"o
+mpirun -n 8 analyser.sh "$location"  "$progress"
 
 

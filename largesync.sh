@@ -9,6 +9,7 @@ touch $PROGRESS
 SCP_TARGET="sabryr@saga.sigma2.no:/cluster/shared/staff/sabry"
 DIR_NUM=$(ls -l $LOCATION | wc -l)
 i=0;
+
 for dir in $(ls $LOCATION)
 do 
 	if grep -q $LOCATION$dir "$PROGRESS"

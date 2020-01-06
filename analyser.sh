@@ -19,9 +19,17 @@ do
  	#tar cf "$dir.tar" "/mnt/cees/in_progress/$dir"
 done
 
-#if [[ -f my.tr ]]
-#then 
+#if [[ -f "$results"]]
+#then
+#export V="T";
+#i=0; 
+#for num in $(awk '{print $1}' results.log | grep $V | awk -F $V '{print $1}')
+#do 
+#	i=$(bc <<< "$i+$num")
+#	done
+#	echo $i"$V"
 #	echo "found" 
 #else 
 #	echo "not found"
 #fi
+

@@ -1,8 +1,8 @@
 #!/bin/bash
 #sabryr 2020-01-03
-
+#export PATH=/mnt/staff/sabry/scripts:$PATH
 LOCATION=$1 #"/mnt/cees/sabry/size/"
-results="results.log"
+#results="results.log"
 TARTARGET=$2  #"/mnt/cees/sabry/size/tmp/"
 PROGRESS=$TARTARGET"progress.txt"
 touch $PROGRESS
@@ -12,7 +12,7 @@ i=0;
 
 for dir in $(ls $LOCATION)
 do 
-	./rsyncwrap.sh $LOCATION$dir $TARTARGET$dir.tar
+	rsyncwrap.sh $LOCATION$dir $TARTARGET$dir.tar $SCP_TARGET $PROGRESS 
 done
 
 #if [[ -f "$results"]]

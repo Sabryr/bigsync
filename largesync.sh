@@ -6,7 +6,7 @@ LOCATION=$1 #"/mnt/cees/sabry/size/"
 TARTARGET=$2  #"/mnt/cees/sabry/size/tmp/"
 PROGRESS=$TARTARGET"progress.txt"
 touch $PROGRESS
-SCP_TARGET="sabryr@saga.sigma2.no:/cluster/shared/staff/sabry"
+SCP_TARGET=""
 DIR_NUM=$(ls -l $LOCATION | wc -l)
 i=0;
 

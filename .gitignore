@@ -3,3 +3,5 @@ progress.log
 results.log
 slurm-*
 tmp
+scp.txt
+test.sh

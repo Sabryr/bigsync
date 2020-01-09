@@ -1,5 +1,6 @@
 #!/bin/bash
 #sabryr 2020-01-03
+#ToDO try backup01 as proxy
 #export PATH=/mnt/staff/sabry/scripts:$PATH
 LOCATION=$1 #"/mnt/cees/sabry/size/"
 #results="results.log"

@@ -14,11 +14,11 @@ sync (){
 	tar cf $Tdir $Cdir --hard-dereference &> /dev/null
 	checksum=$(sha1sum $Tdir | awk '{print substr($0,0,6)}')
  	mv $Tdir $Tdir-$checksum
- 	scp $Tdir-$checksum $SCP_TARGET
- 	if [ $? -eq "0" ] ;
- 	then
- 		rm $Tdir-$checksum
- 	fi
+ 	#scp $Tdir-$checksum $SCP_TARGET
+ 	#if [ $? -eq "0" ] ;
+ 	#then
+ 	#	rm $Tdir-$checksum
+ 	#fi
 	sleep 10
 	echo "Done " $Cdir
 	echo $Cdir >> $TAR_DIR"/done"

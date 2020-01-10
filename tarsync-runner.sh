@@ -38,6 +38,7 @@ getgap (){
 	return $GAP
 }
 
+
 for dir in $(ls $LOCATION)
 do 
 	getgap
@@ -60,9 +61,9 @@ do
 		let i=$i+1
 		if [ "$SRUN_PREFIX" == "LOCAL" ]
 		then
-			 ./tarsync.sh $i $LOCATION $TARTARGET $dir $SCP_TARGET &
+			  ./tarsync.sh $i $LOCATION $TARTARGET $dir $SCP_TARGET &
 		else
-			  $SRUN_PREFIX tarsync.sh $i $LOCATION $TARTARGET $dir $SCP_TARGET
+			  $SRUN_PREFIX ./tarsync.sh $i $LOCATION $TARTARGET $dir $SCP_TARGET &
 		fi
 		sleep 1
 	fi	

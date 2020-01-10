@@ -5,6 +5,13 @@
 
 LOCATION=$1 #"/mnt/cees/sabry/size/"
 TARTARGET=$2  #"/mnt/cees/sabry/size/tmp/"
+LOCATION_DIR_NM=$(echo $LOCATION | awk -F "/" '{print $NF}')
+TARTARGET=$TARTARGET"/"$LOCATION_DIR_NM
+
+echo $LOCATION_DIR_NM
+echo $TARTARGET
+exit 1
+
 PROGRESS=$TARTARGET"progress.txt"
 touch $PROGRESS
 SCP_TARGET=$3 #"sabryr@saga.sigma2.no:/cluster/shared/staff/sabry"

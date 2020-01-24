@@ -38,8 +38,8 @@ gap_wait=0;
 GAP_WAIT_MAX=1440
 
 getgap (){
-	A=$(wc -l $PROGRESS | awk '{print $1}')
-	B=$(wc -l $DONE | awk '{print $1}')
+	A=$(cat $PROGRESS | sort | uniq | wc -l| awk '{print $1}')
+	B=$(cat $DONE | sort | uniq | wc -l| awk '{print $1}')
 	let GAP=$A-$B
 	#let GAP=5
 	return $GAP

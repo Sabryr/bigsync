@@ -13,7 +13,7 @@ sync (){
  	echo  "$Cdir started by " $MYNAME
 	tar cf $Tdir $Cdir --hard-dereference &> /dev/null
 	checksum=$(sha1sum $Tdir | awk '{print substr($0,0,6)}')
- 	mv $Tdir $Tdir-$checksum
+	mv $Tdir $Tdir-$checksum
  	#scp $Tdir-$checksum $SCP_TARGET
  	#if [ $? -eq "0" ] ;
  	#then

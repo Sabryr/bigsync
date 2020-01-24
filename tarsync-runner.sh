@@ -11,8 +11,10 @@ mkdir -p $TARTARGET
 
 echo $TARTARGET
 
-PROGRESS=$TARTARGET"progress.txt"
+PROGRESS=$TARTARGET"/tar-progress.txt"
+DONE=$TARTARGET"/tar-done"
 touch $PROGRESS
+touch $DONE
 SCP_TARGET=$3 #"sabryr@saga.sigma2.no:/cluster/shared/staff/sabry"
 NUM_JOBS=5
 SRUN_PREFIX="LOCAL"
@@ -28,8 +30,6 @@ fi
 
 let DIR_NUM=$(ls -l $LOCATION | wc -l)-1
 
-PROGRESS=$TARTARGET"/progress"
-DONE=$TARTARGET"/done"
 touch $PROGRESS
 touch $DONE
 i=0
@@ -41,6 +41,7 @@ getgap (){
 	A=$(wc -l $PROGRESS | awk '{print $1}')
 	B=$(wc -l $DONE | awk '{print $1}')
 	let GAP=$A-$B
+	#let GAP=5
 	return $GAP
 }
 
@@ -60,16 +61,17 @@ do
 	gap_wait=0
 	if grep -q $LOCATION"/"$dir $PROGRESS
 	then 
-		echo "found" &> /dev/null
+		echo "found --- "$LOCATION"/"$dir 
+		#&> /dev/null
 		let skipped=$skipped+1
  	else 
 		echo $LOCATION"/"$dir >> $PROGRESS 
 		let i=$i+1
 		if [ "$SRUN_PREFIX" == "LOCAL" ]
 		then
-			  ./tarsync.sh $i $LOCATION $TARTARGET $dir $SCP_TARGET &
+			./tarsync.sh $i $LOCATION $TARTARGET $dir $SCP_TARGET &
 		else
-			  $SRUN_PREFIX ./tarsync.sh $i $LOCATION $TARTARGET $dir $SCP_TARGET &
+			$SRUN_PREFIX ./tarsync.sh $i $LOCATION $TARTARGET $dir $SCP_TARGET &
 		fi
 		sleep 1
 	fi	

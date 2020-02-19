@@ -2,7 +2,8 @@
 #sabryr 2020-01-08
 #ToDO try backup01 as proxy
 #export PATH=/mnt/staff/sabry/scripts:$PATH
-#tarsync.sh 1 /mnt/cees/x /mnt/staff/sabry/cees cdir null out.log
+#tarsync.sh 1 /mnt/cees/x /mnt/staff/sabry/cees cdir "NULL" out.log
+#tarsync.sh 1 /mnt/cees/x /mnt/staff/sabry/cees cdir "saga.xxx:/cl../.../" out.log
 
 if [ "$#" -ge 6 ]
 then
@@ -19,9 +20,20 @@ then
  		echo  "$Cdir started by " $MYNAME
 		tar cf $Tdir $Cdir --hard-dereference &> /dev/null
 		if [ $? -eq "0" ] ;
+		then
 			checksum=$(sha1sum $Tdir | awk '{print substr($0,0,6)}')
-			mv $Tdir $Tdir-$checksum
-			echo "$Cdir -- OK ">> $DONE 
+			if [ $? -eq "0" ] ;
+				then
+				mv $Tdir $Tdir-$checksum
+				echo "$Cdir -- OK ">> $DONE 
+				if [[ $1 != NULL* ]]
+				then
+					scp $Tdir-$checksum $SCP_TARGET
+				fi
+			else
+				echo "--ERROR2-- $Cdir -- Checksum calculation failed ">> $DONE 		
+			fi
+			
 		else
 			echo "--ERROR-- $Cdir -- Failed ">> $DONE 		
 		fi
@@ -30,13 +42,3 @@ then
 else
 	echo "Need 6 arguments"
 fi
-
-  		#scp $Tdir-$checksum $SCP_TARGET
-	 	#if [ $? -eq "0" ] ;
- 		#then
-	 	#	rm $Tdir-$checksum
- 		#fi
-		sleep 10
-		echo "Done " $Cdir
-		echo $Cdir >> $DONE
-

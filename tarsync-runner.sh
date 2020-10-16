@@ -5,6 +5,8 @@
 #./tarsync-runner.sh /projects/cees/in_progress /work/users/sabryr/cees sabryr@saga.sigma2.no:/cluster/shared/staff/sabry 5 "srun --account=staff --nodes=1 --cpus-per-task=16 --mem-per-cpu=0 --time=5-00:05:10"
 #tarsync-runner.sh /mnt/staff/sabry/cees/files /mnt/staff/sabry/cees/transfer sabryr@saga.sigma2.no:/cluster/shared/staff/sabry/cees 5 "LOCAL" 
 # To skip use grep syntext string as 6th argument "10.txt\|1.txt\|2.txt\|3.txt\|4.txt\|5.txt\|9.txt"
+#tarsync-runner.sh /mnt/cees /mnt/staff/sabry/cees/transfer sabryr@saga.sigma2.no:/cluster/shared/staff/sabry/cees 50 "LOCAL" "bin\|databases\|exchange\|in_progress"
+
 
 LOCATION=$1 #"/mnt/cees/sabry/size/"
 TARTARGET=$2  #"/mnt/cees/sabry/size/tmp/"

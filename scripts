@@ -2,3 +2,6 @@
 export V="T";i=0; for num in $(awk '{print $1}' results.log | grep $V | awk -F $V '{print $1}'); do i=$(bc <<< "$i+$num"); done; echo $i"$V"
 96.9T
 export V="G";i=0; for num in $(awk '{print $1}' results.log | grep $V | awk -F $V '{print $1}'); do i=$(bc <<< "$i+$num"); done; echo $i"$V"
+
+#for file in $(ls annegreu.tar-004cf7) ; do scp $file sabryr@saga.sigma2.no:/cluster/shared/staff/sabry$PWD"/"; if [ "$?" -eq 0 ]; then rm $file; else echo $file" -- Failed "; fi ;done;
+-bash-4.1$ 

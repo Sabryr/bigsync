@@ -28,6 +28,7 @@ then
 				echo "$Cdir -- OK ">> $DONE 
 				if [[ $1 != NULL* ]]
 				then
+					#Do a tar list before this step
 					scp $Tdir-$checksum $SCP_TARGET
 				fi
 			else
